@@ -1,0 +1,48 @@
+server:
+  port: 6571
+
+# LogBack(Log4j)
+logging:
+  level: ## LOGGING LEVEL : 1) ERROR 2) WARN 3) INFO 4) DEBUG 5) TRACE
+    root: info
+#  pattern: ## ?? ?? ??? ?? ???.
+#    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%logger:){cyan}%clr(%M){blue}%clr(::%L){green} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+
+# swagger enable
+springfox:
+  documentation:
+    swagger:
+      v2:
+        enabled: true
+---
+# --- profile local --- #
+spring:
+  config:
+    activate:
+      on-profile: local
+  # POSTGERSQL
+  datasource:
+    url: jdbc:postgresql://localhost:15432/dboolog
+    username: dboolog
+    password: eoghks12
+    driver-class-name: org.postgresql.Driver
+
+  # hibernate optionddl-auto
+  jpa:
+    hibernate:
+      ## 1. create : ?? ???? ?? ????, ?? ???? ???.
+      ddl-auto: create
+    ## 2. update : ??? ????? ????? ??? ???, ???? ????.
+    ## ddl-auto: update
+    ## 3. validate : ????? ?????? ????.
+    ## ddl-auto: validate
+
+    ## show-sql : hibernate? ???? ????? SQL?? ??? ????.
+    show-sql: true
+#  properties:
+#    hibernate:
+#      format_sql: true
+
+# banner
+banner:
+#  location: banner/local-banner.txt

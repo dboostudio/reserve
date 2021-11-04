@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  databases:
+    image: postgres
+    restart: always
+    container_name: pension_reserve
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_USER: pension
+      POSTGRES_PASSWORD: pension1119
+      TZ: Asia/Seoul
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
