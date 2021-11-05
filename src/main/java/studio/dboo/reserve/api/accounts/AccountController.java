@@ -23,6 +23,7 @@ import java.util.Optional;
  * Github : http://github.com/dboostudio
  * Gitlab : http://dboostudio.synology.me:30000
  */
+@RequestMapping("/api/account")
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
