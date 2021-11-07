@@ -3,6 +3,7 @@ package studio.dboo.reserve.view;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
@@ -13,6 +14,7 @@ import java.security.Principal;
  * Gitlab : http://dboostudio.synology.me:30000
  */
 @Controller
+@RequestMapping("/view")
 public class ViewController {
 
     @GetMapping("/")
@@ -27,7 +29,9 @@ public class ViewController {
     }
 
     @GetMapping("/login")
-    public String login(Model model){ return "login"; }
+    public String login(Model model, Principal principal) {
+        return "login";
+    }
 
     @GetMapping("/admin")
     public String admin(Model model, Principal principal){

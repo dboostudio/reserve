@@ -9,32 +9,28 @@
 
 <!--nav main-->
 <div th:fragment="nav-main">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark px-3">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-white bg-gray px-3">
+        <div class="container-fluid mt-1">
             <a href="/" class="navbar-brand" th:href="@{/}">
-                <img height="50px" src="/images/logo-dboolog.png"/>
+<!--                <img height="50px" src="/images/logo-dboolog.png"/>-->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExample04">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="#" th:href="" sec:authorize="isAuthenticated()">내 예약대장</a>
                     </li>
                 </ul>
                 <div class="mx-3 d-flex justify-content-center">
-                    <a type="form-control button" class="btn btn-outline-light me-2" sec:authorize="!isAuthenticated()" th:href="@{/login}">로그인</a>
-                    <a type="form-control button" class="btn btn-warning" sec:authorize="!isAuthenticated()" th:href="@{/sign-up}">회원가입</a>
+                    <a type="form-control button" class="btn me-3" sec:authorize="!isAuthenticated()" th:href="@{/view/sign-up}">회원가입</a>
+                    <a type="form-control button" class="btn btn-success" sec:authorize="!isAuthenticated()" th:href="@{/view/login}">로그인</a>
                     <div class="dropdown" sec:authorize="isAuthenticated()">
-                        <a class="dropdown-toggle btn btn-dark" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown">내 정보</a>
+                        <a class="dropdown-toggle btn" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown">내 정보</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown">
-                            <li><a class="dropdown-item" href="${/view/profile}">프로필</a></li>
-                            <li><a class="dropdown-item" href="${/view/comments}">댓글</a></li>
+                            <li><a class="dropdown-item" href="${/view/profile}">프로필 및 설정</a></li>
                             <li><a class="dropdown-item" id="logout">로그아웃</a></li>
                         </ul>
                     </div>
@@ -42,6 +38,7 @@
             </div>
         </div>
     </nav>
+    <div class="dropdown-divider"></div>
 </div>
 </html>
 

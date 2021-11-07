@@ -10,9 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import javax.validation.constraints.*;
 
 /**
  * Created by dboo on 2021/11/04
@@ -54,9 +53,7 @@ public class Account extends BaseTimeEntity {
     /** Private Info **/
     @Pattern(regexp = "^\\d{3}-\\d{4}-\\d{4}$", message = CELLPHONE_FORM_NOT_CORRECT)
     private String cellPhone;               // 핸드폰번호
-    @NotBlank
     private String firstname;               // 성
-    @NotBlank
     private String lastname;                // 이름
     private String birth;                   // 생년월일
     private String address;                 // 주소

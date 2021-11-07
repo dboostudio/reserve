@@ -42,23 +42,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
         web.ignoring().antMatchers("/node_modules/**");
+        web.ignoring().antMatchers("/js/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 /** View */
-                .antMatchers("/", "/sign-up", "/login", "/calendar").permitAll()
+                .antMatchers("/", "/view/login", "/view/sign-up").permitAll()
 
                 /** API */
                 //account
                 .antMatchers(HttpMethod.POST, "/api/account").permitAll()
-                .antMatchers("/api/account/login", "api/account/logout").permitAll()
+                .antMatchers("/api/account/login", "/api/account/logout").permitAll()
                 .anyRequest().authenticated();
 
         //폼 로그인 설정
         http.formLogin()
-                .loginPage("/login").permitAll();
+                .loginPage("/view/login").permitAll();
 
         //로그아웃 후 리다이렉션 설정
         http.logout()

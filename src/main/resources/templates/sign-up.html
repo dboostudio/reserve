@@ -5,10 +5,9 @@
   <div th:replace="/fragments/nav.html :: nav-main"/>
   <div class="container-sm">
     <div class="row justify-content-center d-flex">
-      <div class="col-lg-7 col-xl-7 col-xxl-7 p-4 m-5 border border-dark rounded justify-content-center" >
-        <p class="fs-2 mb-3">회원가입</p>
-        <div class="dropdown-divider mb-3"></div>
-        <p class="fs-4 mb-3">로그인 정보 (필수)</p>
+      <div class="col-lg-7 col-xl-7 col-xxl-7 p-4 m-5 justify-content-center" >
+        <p class="fs-2">회원가입</p>
+        <p class="fs-4 mb-3 mt-5">로그인 정보 (필수)</p>
         <div class="mb-3">
           <label for="userId" class="form-label">아이디</label>
           <input class="form-control" id="userId" aria-describedby="userId-help" placeholder="somthing@email.com">
@@ -34,8 +33,7 @@
           <small id="password-warn" class="form-text text-danger warn-message d-none">비밀번호 오류</small>
           <small id="password-not-match" class="form-text text-danger warn-message d-none">비밀번호가 일치하지 않습니다.</small>
         </div>
-        <div class="dropdown-divider mb-3"></div>
-        <p class="fs-4">개인 정보 (선택)</p>
+        <p class="mt-7 fs-4 mt-5">개인 정보 (선택)</p>
         <p class="fs-normal mb-3">- 개인정보는 사이트내 그룹 추천 및 통계외에 활용되지 않습니다.</p>
         <div class="row">
           <div class="col mb-3">
@@ -66,7 +64,6 @@
           <label for="address" class="form-label">주소</label>
           <input class="form-control" id="address">
         </div>
-        <div class="dropdown-divider mb-3"></div>
         <div class="d-grid mx-auto col-4">
           <button class="btn btn-primary btn-lg" id="submit">가입하기</button>
         </div>
