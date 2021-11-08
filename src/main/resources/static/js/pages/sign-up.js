@@ -9,7 +9,7 @@ $(document).on('change', '#userId', function(){
 })
 
 $(document).on('change', '#password-confirm', function(){
-    if($("#password").val() !== $("#password-confirm").val()){
+    if($("#password").val() !== $("#password-confirm").val() && $("#password").val().length > 7){
         $("#password-confirm").addClass('border').addClass('border-danger');
         $("#password-not-match").removeClass('d-none');
         $("#check").addClass('d-none');
@@ -40,8 +40,8 @@ $("#submit").on('click', function(){
         function(){
             let field = $(this).attr('id');
             let value = $(this).val();
-            console.log("field : " , field, ", value : ", value)
             if(field !== undefined && field !== "password-confirm" && value !== undefined && value.length > 0){
+                console.log("field : " , field, ", value : ", value)
                 param[field] = value;
             }
         });

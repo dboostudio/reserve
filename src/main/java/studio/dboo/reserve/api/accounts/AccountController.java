@@ -33,13 +33,13 @@ public class AccountController {
     //Account CRUD
     @GetMapping
     @ApiOperation(value = "getAccount", notes = "계정 조회")
-    public ResponseEntity<Account> getAccount(Account account) {
+    public ResponseEntity<Account> getAccount(@CurrentAccount Account account) {
         return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccount(account.getUserId()));
     }
 
     @PostMapping
     @ApiOperation(value = "createAccount", notes = "계정 생성")
-    public ResponseEntity<Account> createAccount(@Valid Account account) {
+    public ResponseEntity<Account> createAccount(@Valid @RequestBody Account account) {
         return ResponseEntity.status(HttpStatus.OK).body(accountService.createAccount(account));
     }
 

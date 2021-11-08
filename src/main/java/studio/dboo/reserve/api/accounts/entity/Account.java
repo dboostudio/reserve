@@ -44,7 +44,7 @@ public class Account extends BaseTimeEntity {
 
     @NotBlank(message = ENTER_PASSWORD)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Size(min = 8, max = 20, message = PASSWORD_SIZE_NOT_CORRECT)
+//    @Size(min = 8, max = 20, message = PASSWORD_SIZE_NOT_CORRECT)
     private String password;
 
     @JsonIgnore

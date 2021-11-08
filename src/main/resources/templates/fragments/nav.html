@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" th:href="" sec:authorize="isAuthenticated()">내 예약대장</a>
+                        <a class="nav-link" href="#" th:href="@{/view/sign-up}" sec:authorize="isAuthenticated()">내 예약대장</a>
                     </li>
                 </ul>
                 <div class="mx-3 d-flex justify-content-center">
@@ -30,7 +30,7 @@
                     <div class="dropdown" sec:authorize="isAuthenticated()">
                         <a class="dropdown-toggle btn" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown">내 정보</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown">
-                            <li><a class="dropdown-item" href="${/view/profile}">프로필 및 설정</a></li>
+                            <li><a class="dropdown-item" th:href="@{/view/profile}">프로필 및 설정</a></li>
                             <li><a class="dropdown-item" id="logout">로그아웃</a></li>
                         </ul>
                     </div>
