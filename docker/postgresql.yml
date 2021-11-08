@@ -4,12 +4,12 @@ services:
   databases:
     image: postgres
     restart: always
-    container_name: pension_reserve
+    container_name: inn_reserve
     ports:
       - 15432:5432
     environment:
-      POSTGRES_USER: pension
-      POSTGRES_PASSWORD: pension1119
+      POSTGRES_USER: inn
+      POSTGRES_PASSWORD: inn1@!2_
       TZ: Asia/Seoul
     volumes:
       - ./postgresql/data:/var/lib/postgresql/data

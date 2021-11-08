@@ -1,5 +1,6 @@
 package studio.dboo.reserve.api.accounts;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -7,11 +8,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 import studio.dboo.reserve.api.accounts.entity.Account;
 
 import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;
+
 
 /**
  * Created by dboo on 2021/11/04
@@ -26,40 +36,49 @@ import static org.junit.jupiter.api.Assertions.*;
 class AccountControllerTest {
 
     @Autowired AccountService accountService;
+    @Autowired ObjectMapper objectMapper;
+    @Autowired MockMvc mockMvc;
 
-    @BeforeEach
-    public void createTestAccounts(){
-        for(int i = 0; i<50; i++){
-            createUser(
-                    "test"+i,
-                    "1234"
-            );
-        }
-    }
+    final static String TEST_USER_ID_PASSWORD_JSON = "{\"userId\":\"test@gmail.com\",\"password\":\"12341234\"}";
 
-    private Account createUser(String userId, String password) {
-        Account account = Account.builder()
-                .userId(userId)
-                .password(password)
-                .role("USER")
-                .build();
-        accountService.createAccount(account);
-        return account;
+    @BeforeAll
+    static void beforeAll(){
+        System.out.println("before All");
     }
 
     @Test
-    public void test(){
-        System.out.println("test start!");
+    @DisplayName("계정 생성 성공")
+    void postAccount() throws Exception {
+        mockMvc.perform(post("/api/account")
+                        .content(TEST_USER_ID_PASSWORD_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("계정 생성 - 성공")
-    public void createAccount(){
-        Account account = Account.builder()
-                .firstname("daehwan")
-                .lastname("boo")
-                .password("eoghks1@!2_").build();
+    @DisplayName("로그인")
+    void login() throws Exception {
+        postAccount();
+        mockMvc.perform(post("/api/account/login")
+                        .content(TEST_USER_ID_PASSWORD_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
+    @Test
+    @DisplayName("본인 계정 조회")
+    void getAccount() throws Exception {
+        login();
+        mockMvc.perform(get("/api/account")
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
 

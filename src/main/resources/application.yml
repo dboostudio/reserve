@@ -1,5 +1,5 @@
 server:
-  port: 6571
+  port: 6572
 
 # LogBack(Log4j)
 logging:
@@ -17,14 +17,14 @@ springfox:
 ---
 # --- profile local --- #
 spring:
-  config:
-    activate:
-      on-profile: local
+#  config:
+#    activate:
+#      on-profile: local
   # POSTGERSQL
   datasource:
-    url: jdbc:postgresql://localhost:15432/dboolog
-    username: dboolog
-    password: eoghks12
+    url: jdbc:postgresql://localhost:15432/inn
+    username: inn
+    password: inn1@!2_
     driver-class-name: org.postgresql.Driver
 
   # hibernate optionddl-auto

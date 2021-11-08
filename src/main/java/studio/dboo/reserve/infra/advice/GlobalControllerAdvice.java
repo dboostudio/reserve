@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,17 +29,40 @@ public class GlobalControllerAdvice {
         JsonArray result = new JsonArray();
         JsonObject jsonObject = new JsonObject();
 
-        log.error("========== DBOOLOG ERROR LOG START ==========");
+        log.error("========== INNRESERVE EXCEPTION LOG START ==========");
         log.error("Error SimpleName : {} ", e.getClass().getSimpleName());
         log.error("Error Message : {}", e.getMessage());
         log.error("Error StackTrace : {} ", e);
-        log.error("========== DBOOLOG ERROR LOG END ============");
+        log.error("========== INNRESERVE EXCEPTION LOG END ============");
 
         jsonObject.addProperty("field", e.getClass().getSimpleName());
         jsonObject.addProperty("message", e.getMessage());
         result.add(jsonObject);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result.toString());
+    }
+
+    // bindException시, 핸들링
+    @ExceptionHandler(value = BindException.class)
+    public ResponseEntity bindExceptionHandler(BindException e) throws JsonProcessingException {
+        JsonArray result = new JsonArray();
+        BindingResult bindingResult = e.getBindingResult();
+        bindingResult.getAllErrors().forEach( error -> {
+            JsonObject jsonObject = new JsonObject();
+            FieldError field = (FieldError) error;
+            log.error("========== INN RESERVE ERROR LOG START ==========");
+            log.error("BindException occured");
+            log.error("Field : {}", field.getField());
+            log.error("ObjectName : {}", field.getObjectName());
+            log.error("DefaultMessage : {}", field.getDefaultMessage());
+            log.error("RejectedValue : {}", field.getRejectedValue());
+
+            jsonObject.addProperty("field", field.getField());
+            jsonObject.addProperty("message", field.getDefaultMessage());
+            result.add(jsonObject);
+            log.error("========== INN RESERVE ERROR LOG END ============");
+        });
+        return ResponseEntity.badRequest().body(result.toString());
     }
 
     // Validation 실패 시, BAD_REQUEST 리턴
@@ -48,7 +73,7 @@ public class GlobalControllerAdvice {
         bindingResult.getAllErrors().forEach( error -> {
             JsonObject jsonObject = new JsonObject();
             FieldError field = (FieldError) error;
-            log.error("========== DBOOLOG ERROR LOG START ==========");
+            log.error("========== INN RESERVE ERROR LOG START ==========");
             log.error("MethodArgumentNotValidException occured");
             log.error("Field : {}", field.getField());
             log.error("ObjectName : {}", field.getObjectName());
@@ -58,8 +83,9 @@ public class GlobalControllerAdvice {
             jsonObject.addProperty("field", field.getField());
             jsonObject.addProperty("message", field.getDefaultMessage());
             result.add(jsonObject);
-            log.error("========== DBOOLOG ERROR LOG END ============");
+            log.error("========== INN RESERVE ERROR LOG END ============");
         });
         return ResponseEntity.badRequest().body(result.toString());
     }
+
 }
