@@ -61,12 +61,11 @@ public class AccountService implements UserDetailsService {
     }
 
     public void updateAccount(Account account) {
-
+         accountRepository.save(account);
     }
 
     public void deleteAccount(Account account) {
-
-        accountRepository.delete(account);
+        accountRepository.save(account);
     }
 
     public Boolean isMyself(Account account) {
