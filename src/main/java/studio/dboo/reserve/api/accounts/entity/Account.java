@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import studio.dboo.reserve.api.base.BaseTimeEntity;
+import studio.dboo.reserve.api.base.TimeEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 @Entity
 @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Account extends BaseTimeEntity {
+public class Account extends TimeEntity {
 
 
     final static String ENTER_USER_ID = "아이디를 입력해 주세요.";
