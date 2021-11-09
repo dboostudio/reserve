@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.Optional;
 
 /**
@@ -35,8 +36,8 @@ public class AccountController {
     //Account CRUD
     @GetMapping
     @ApiOperation(value = "getAccount", notes = "계정 조회")
-    public ResponseEntity<Account> getAccount(@CurrentAccount Account account) {
-        return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccount(account.getUserId()));
+    public ResponseEntity<Account> getAccount(Principal principal) {
+        return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccount(principal.getName()));
     }
 
     @PostMapping

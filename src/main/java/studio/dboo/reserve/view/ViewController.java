@@ -1,9 +1,12 @@
 package studio.dboo.reserve.view;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import studio.dboo.reserve.api.accounts.AccountService;
+import studio.dboo.reserve.api.accounts.entity.Account;
 
 import java.security.Principal;
 
@@ -15,7 +18,10 @@ import java.security.Principal;
  */
 @Controller
 @RequestMapping("/view")
+@RequiredArgsConstructor
 public class ViewController {
+
+    private final AccountService accountService;
 
     @GetMapping("/")
     public String index(Model model, Principal principal){
@@ -33,8 +39,11 @@ public class ViewController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal){
+    public String profile(Model model, Principal principal) {
+        Account account = accountService.getAccount(principal.getName());
+        model.addAttribute(account);
         return "account/profile";
+
     }
 
     @GetMapping("/admin")
