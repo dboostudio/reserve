@@ -17,15 +17,6 @@ public class RootViewRedirectionController {
 
     @RequestMapping("/")
     public String root(Model model, Principal principal) {
-        transferUsernameToModel(model, principal);
         return "index";
-    }
-
-    private void transferUsernameToModel(Model model, Principal principal) {
-        if(principal == null){
-            model.addAttribute("userId", "Welcome To Dboo's Log");
-        } else {
-            model.addAttribute("userId", principal.getName());
-        }
     }
 }

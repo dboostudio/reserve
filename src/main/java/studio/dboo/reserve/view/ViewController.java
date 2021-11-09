@@ -19,7 +19,6 @@ public class ViewController {
 
     @GetMapping("/")
     public String index(Model model, Principal principal){
-        transferUsernameToModel(model, principal);
         return "index";
     }
 
@@ -33,22 +32,33 @@ public class ViewController {
         return "login";
     }
 
+    @GetMapping("/profile")
+    public String profile(Model model, Principal principal){
+        return "account/profile";
+    }
+
     @GetMapping("/admin")
     public String admin(Model model, Principal principal){
-        transferUsernameToModel(model, principal);
         return "admin";
     }
 
-    @GetMapping("/articles")
-    public String article(Model model, Principal principal){
-        return "articles/articles";
+    @GetMapping("/inn")
+    public String inn(Model model, Principal principal){
+        return "inn/inn";
     }
 
-    private void transferUsernameToModel(Model model, Principal principal) {
-        if(principal == null){
-            model.addAttribute("userId", "Welcome To Dboo's Log");
-        } else {
-            model.addAttribute("userId", principal.getName());
-        }
+    @GetMapping("/room")
+    public String room(Model model, Principal principal){
+        return "inn/room";
+    }
+
+    @GetMapping("/calendar")
+    public String calendar(Model model, Principal principal){
+        return "inn/calendar";
+    }
+
+    @GetMapping("/reservation")
+    public String reservation(Model model, Principal principal){
+        return "inn/reservation";
     }
 }

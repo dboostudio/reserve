@@ -8,6 +8,7 @@ package studio.dboo.reserve.api.inn.entity;
  */
 
 import lombok.*;
+import studio.dboo.reserve.api.accounts.entity.Account;
 import studio.dboo.reserve.api.base.AddressTimeEntity;
 import studio.dboo.reserve.api.reservation.entity.Reservation;
 import studio.dboo.reserve.api.room.entity.Room;
@@ -23,6 +24,9 @@ public class Inn extends AddressTimeEntity {
 
     @Id @GeneratedValue
     private Long id;
+
+    @ManyToOne
+    private Account account; // 소유주
 
     private String innName; // Inn 이름
 

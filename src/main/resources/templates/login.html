@@ -1,45 +1,61 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
 <head th:replace="/fragments/head.html :: head"/>
 <body>
-<!--  <div th:replace="/fragments/nav.html :: nav-main"/>-->
-  <div class="container-sm">
-    <div class="row d-flex justify-content-center p-3">
-      <div class="col-md-7 col-lg-6 col-xl-4 col-xxl-4 p-3 m-5" >
-        <p class="fs-2 py-2">로그인</p>
-        <div>
-          <label for="userId" class="form-label">아이디</label>
-          <input class="form-control" id="userId" aria-describedby="userId-help">
-          <small id="userId-warn" class="form-text text-danger warn-message d-none">아이디 오류</small>
-        </div>
-        <div class="mt-3">
-          <label for="password" class="form-label">패스워드</label>
-          <input type="password" class="form-control" id="password" aria-describedby="password-help">
-          <small id="password-warn" class="form-text text-danger warn-message d-none">패스워드 오류</small>
-        </div>
-        <div class="d-grid gap-2 mt-3">
-          <button type="submit" id="login-button" class="btn btn-success">로그인</button>
-          <a id="signUp" class="btn btn-outline-black" th:href="@{/view/sign-up}">가입하기</a>
-        </div>
-        <div class="d-grid mx-auto gap-2 col-8 mt-5">
-          <a id="login-button-g" class="btn btn-outline-primary">
-            <div class="row">
-              <div class="col-2"><i class="fab fa-google"></i></div>
-              <div class="col">Google 로그인</div>
-            </div>
-          </a>
-          <a id="login-button-f" class="btn btn-outline-primary">
-            <div class="row">
-              <div class="col-2"><i class="fab fa-facebook-square"></i></div>
-              <div class="col">facebook 로그인</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div th:replace="/fragments/footer.html :: footer"/>
-</body>
 
+<div class="wrapper">
+  <form class="login">
+    <h3>INN RESERVE</h3>
+    <h2>로그인</h2>
+<!--    <div class="login_sns">-->
+<!--      <li><a href=""><i class="fab fa-instagram"></i></a></li>-->
+<!--      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>-->
+<!--      <li><a href=""><i class="fab fa-twitter"></i></a></li>-->
+<!--    </div>-->
+    <div class="formWrap">
+      <h4>이메일</h4>
+      <input type="email" name="" id="userId" placeholder="your-email@example.com">
+        <small id="userId-warn" class="warn-message d-none">아이디 오류</small>
+
+    </div>
+    <div class="formWrap">
+      <h4>비밀번호</h4>
+      <input type="password" name="" id="password" placeholder="Password">
+        <small id="password-warn" class="warn-message d-none">비밀번호 오류</small>
+
+    </div>
+    <div class="login_etc">
+<!--      <div class="checkbox">-->
+<!--        <input type="checkbox" name="" id="rememberMe"> Remember Me?-->
+<!--      </div>-->
+<!--      <div class="forgot_pw">-->
+<!--        <a href="">Forgot Password?</a>-->
+<!--      </div>-->
+    </div>
+    <div class="submit">
+      <button type="button" class="loginButton" id="login-button">로그인</button>
+    </div>
+
+    <div class="signUpLink">
+      <!--      <input type="submit" value="submit">-->
+      <a href="#" th:href="@{/view/sign-up}">가입하기</a>
+    </div>
+
+  </form>
+</div>
+</body>
+</html>
+
+</div>
+
+</body>
 <script type="application/javascript" src="/js/pages/login.js"></script>
 </html>

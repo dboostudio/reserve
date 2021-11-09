@@ -147,6 +147,20 @@ function post_login(userInfo){
 }
 
 /**
+ * 로그아웃 요청을 보낸다.
+ */
+function get_logout(){
+    let logout_url = "/api/account/logout";
+    get(logout_url, function(){location.href="/";});
+}
+
+//로그아웃 버튼 동작
+$(document).on("click", "#logout-button", function(){
+    get_logout();
+})
+
+
+/**
  * InputBox의 값 validation error가 있을 때
  * InputBox에 빨간 테두리를 치고, 포커스와 뷰를 이동한다.
  * @param response <JSON>
@@ -155,13 +169,11 @@ function show_input_validation_error(response){
     $(response).each(function(index){
         let field = response[index]["field"];
         let message = response[index]["message"];
-        console.log(field);
-        console.log(message);
         if(index == 0){
             move_view_to_tag($(`input[id=${field}]`));
         }
         $(`.warn-message[id=${field}-warn]`).text(message).removeClass('d-none');
-        $(`input[id=${field}]`).addClass('border').addClass('border-danger');
+        $(`input[id=${field}]`).addClass('border-danger');
     })
 }
 
@@ -170,7 +182,7 @@ function show_input_validation_error(response){
  */
 function hide_input_validation_error(){
     $('input').each(function(){
-        $(this).removeClass('border').removeClass('border-danger');
+        $(this).removeClass('border-danger');
     })
     $('.warn-message').each(function(){
         $(this).addClass('d-none');

@@ -24,7 +24,7 @@ $(document).on('change', '#userId', function(){
     validation_email($("#userId").val())
 })
 
-$("#submit").on('click', function(){
+$("#signUp-button").on('click', function(){
 
     // 패스워드 불일치 검증
     let param = {};

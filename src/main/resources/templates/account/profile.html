@@ -1,7 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+
+</head>
 <head th:replace="/fragments/head.html :: head"/>
 <body>
-<div th:replace="/fragments/nav.html :: nav-main"/>
+
+<div class="container">
+    <div th:replace="/fragments/sidebar.html ::  sidebar"/>
+
+    <div class="profile">
+        <h2>내 정보</h2>
+        <div class="profileList">
+            <div class="profileKeys">
+                <ul>
+                    <li>아이디</li>
+                    <li>성</li>
+                    <li>이름</li>
+                    <li>성별</li>
+                    <li>핸드폰 번호</li>
+                    <li>생년월일</li>
+                </ul>
+            </div>
+            <div class="profileValues">
+                <ul>
+                    <li id="userId">userId</li>
+                    <li id="lastname">lastname</li>
+                    <li id="firstname">firstname</li>
+                    <li id="gender">gender</li>
+                    <li id="cellPhone">cellPhone</li>
+                    <li id="birth">birth</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
+
+<script th:src="@{/js/pages/profile.js}"/>
 </html>

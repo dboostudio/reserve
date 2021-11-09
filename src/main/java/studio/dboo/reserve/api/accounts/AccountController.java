@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.infra.annotation.RestLogger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +24,10 @@ import java.util.Optional;
  * Github : http://github.com/dboostudio
  * Gitlab : http://dboostudio.synology.me:30000
  */
-@RequestMapping("/api/account")
+@RestLogger
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -66,10 +68,8 @@ public class AccountController {
 
     @GetMapping("/logout")
     @ApiOperation(value = "logout", notes = "로그아웃")
-    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response, Account account){
+    public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-
 }
