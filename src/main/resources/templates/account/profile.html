@@ -1,45 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">-->
-<!--    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>-->
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
 
-<!--</head>-->
+</head>
 <head th:replace="/fragments/head.html :: head"/>
 <body>
 
 <div class="container">
     <div th:replace="/fragments/sidebar.html ::  sidebar"/>
 
-    <div class="profile">
-        <h2>내 정보</h2>
-        <div class="profileList">
-            <div class="profileKeys">
-                <ul>
-                    <li>아이디</li>
-                    <li>성</li>
-                    <li>이름</li>
-                    <li>성별</li>
-                    <li>핸드폰 번호</li>
-                    <li>생년월일</li>
-                </ul>
-            </div>
-            <div class="profileValues">
-                <ul>
-                    <li th:text="${account.userId}"> </li>
-                    <li th:text="${account.lastname}"> </li>
-                    <li th:text="${account.firstname}"> </li>
-                    <li th:text="${account.gender}"> </li>
-                    <li th:text="${account.cellPhone}"> </li>
-                    <li th:text="${account.birth}"> </li>
-                </ul>
-            </div>
-        </div>
+    <div class="content profile">
+<!--        <div class="alignCenter">-->
+            <h2>내 정보</h2>
+            <ul class="profileList">
+                <li><span class="profileKeys">아이디</span> <span class="profileValues" th:text="${account.userId}">ㅁ</span></li>
+                <li><span class="profileKeys">성</span> <span class="profileValues" th:text="${account.lastname}">ㅁ</span></li>
+                <li><span class="profileKeys">이름</span> <span class="profileValues" th:text="${account.firstname}">ㅠ</span></li>
+                <li><span class="profileKeys">성별</span> <span class="profileValues" th:text="${account.gender}">ㅇ</span></li>
+                <li><span class="profileKeys">핸드폰</span> <span class="profileValues" th:text="${account.cellPhone}">ㄷ</span></li>
+                <li><span class="profileKeys">생년월일</span> <span class="profileValues" th:text="${account.birth}">ㅌ</span></li>
+            </ul>
+<!--        </div>-->
     </div>
+
+
 
 </div>
 </body>
 
-<script th:src="@{/js/pages/profile.js}"></script>
+<script th:src="@{/js/pages/calendar.js}"></script>
 </html>

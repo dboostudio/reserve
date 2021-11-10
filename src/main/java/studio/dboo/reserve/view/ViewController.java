@@ -43,7 +43,6 @@ public class ViewController {
         Account account = accountService.getAccount(principal.getName());
         model.addAttribute(account);
         return "account/profile";
-
     }
 
     @GetMapping("/admin")

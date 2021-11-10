@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+
+</head>
 <head th:replace="/fragments/head.html :: head"/>
 <body>
-<div class = "row">
-    <div class="col-2">
-        <div th:replace="/fragments/sidebar.html ::  sidebar"/>
-    </div>
-    <div class="col">
-        <div th:replace="/fragments/nav.html :: nav-main"/>
-        <h1>환영합니다. 숙소설정 사이트 입니다.</h1>
-        <div th:replace="/fragments/footer.html :: footer"/>
+
+<div class="container">
+    <div th:replace="/fragments/sidebar.html ::  sidebar"/>
+
+    <div class="content calendar">
+        <table class="calendarTable">
+            <tr>
+                <td rowspan="2"></td>
+                <td class="date" colspan="7">2021년 11월</td>
+            </tr>
+            <tr>
+                <td class="monday"><span>08</span> (월)</td>
+                <td class="tuesday"><span>09</span> (화)</td>
+                <td class="wednesday"><span>10</span> (수)</td>
+                <td class="thursday"><span>11</span> (목)</td>
+                <td class="friday"><span>12</span> (금)</td>
+                <td class="saturday"><span>13</span> (토)</td>
+                <td class="sunday"><span>14</span> (일)</td>
+            </tr>
+            <tr id="room1">
+                <td>101호</td>
+                <td></td>
+                <td></td>
+                <td><div>부대환</div><div>010-9134-6572</div></td>
+                <td><div>원준희</div><div>010</div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="room2">
+                <td>101호</td>
+                <td></td>
+                <td></td>
+                <td class="reserved"><div>부대환</div><div>010-9134-6572</div></td>
+                <td><div>원준희</div><div>010</div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="room3">
+                <td>101호</td>
+                <td></td>
+                <td></td>
+                <td><div>부대환</div><div>010-9134-6572</div></td>
+                <td><div>원준희</div><div>010</div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>
+
+<script th:src="@{/js/pages/calendar.js}"></script>
 </html>
