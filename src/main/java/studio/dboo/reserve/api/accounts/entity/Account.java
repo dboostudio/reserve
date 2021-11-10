@@ -4,14 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import studio.dboo.reserve.api.base.AddressTimeEntity;
 import studio.dboo.reserve.api.base.TimeEntity;
+import studio.dboo.reserve.api.inn.entity.Inn;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by dboo on 2021/11/04
@@ -22,7 +24,7 @@ import javax.validation.constraints.*;
 @Entity
 @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Account extends TimeEntity {
+public class Account extends AddressTimeEntity {
 
 
     final static String ENTER_USER_ID = "아이디를 입력해 주세요.";
@@ -45,7 +47,10 @@ public class Account extends TimeEntity {
     @NotBlank(message = ENTER_PASSWORD)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //    @Size(min = 8, max = 20, message = PASSWORD_SIZE_NOT_CORRECT)
-    private String password;
+    private String password;                // 비밀번호
+
+    @OneToMany(mappedBy = "account")
+    private List<Inn> inns = new ArrayList<>();
 
     @JsonIgnore
     private String role; //권한 (ADMIN, USER)
@@ -53,11 +58,10 @@ public class Account extends TimeEntity {
     /** Private Info **/
     @Pattern(regexp = "^\\d{3}-\\d{4}-\\d{4}$", message = CELLPHONE_FORM_NOT_CORRECT)
     private String cellPhone;               // 핸드폰번호
-    private String firstname;               // 성
-    private String lastname;                // 이름
-    private String birth;                   // 생년월일
-    private String address;                 // 주소
-    private String sex;                     // 성별
+    private String lastname;                // 성
+    private String firstname;               // 이름
+    private LocalDate birth;                   // 생년월일
+    private String gender;                     // 성별
 
     /** Tier, Point **/
     private Integer tier;                   // 등급 : 1~5 blonze, silver, gold, platinum, diamond

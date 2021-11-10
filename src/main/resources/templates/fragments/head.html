@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title>오픈 예약대장 서비스</title>
+    <title>온라인 예약대장 서비스</title>
 
     <!--  csrf meta tag  -->
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
@@ -10,8 +10,8 @@
 
     <!-- npm modules -->
         <!--  bootstrap  -->
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />-->
+<!--    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
 
         <!-- jQuery -->
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -30,11 +30,8 @@
     <script src="/js/common/functions.js"></script>
     <script src="/js/common/messages.js"></script>
 
-    <!-- Style -->
-    <style>
-        .container {
-            max-width: 100%;
-        }
-    </style>
+    <!--  css  -->
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+
 </head>
 </html>

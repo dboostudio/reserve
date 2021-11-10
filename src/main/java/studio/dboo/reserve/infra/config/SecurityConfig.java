@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
         web.ignoring().antMatchers("/node_modules/**");
         web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
     }
 
     @Override
@@ -50,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 /** View */
                 .antMatchers("/", "/view/login", "/view/sign-up").permitAll()
-
+                .antMatchers("/view/calendar").permitAll()
                 /** API */
                 //account
                 .antMatchers(HttpMethod.POST, "/api/account").permitAll()
