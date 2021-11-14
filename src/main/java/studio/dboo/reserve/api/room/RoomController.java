@@ -1,12 +1,14 @@
 package studio.dboo.reserve.api.room;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import studio.dboo.reserve.api.accounts.AccountService;
+import studio.dboo.reserve.api.accounts.entity.Account;
 import studio.dboo.reserve.api.room.entity.Room;
 
 import java.util.List;
@@ -25,15 +27,11 @@ public class RoomController {
 
     private final RoomService roomService;
 
-
-    @GetMapping
-    public ResponseEntity<List<Room>> getRoom(){
-
-        List<Room> roomList = roomService.getRoomList();
-
+    @GetMapping("/{innName}")
+    @ApiOperation(value = "getRoomList", notes = "방 정보 조회")
+    public ResponseEntity<List<Room>> getRoomList(@PathVariable String innName){
+        List<Room> roomList = roomService.getRoomList(innName);
         return ResponseEntity.status(HttpStatus.OK).body(roomList);
-
     }
 
-    @PostMapping
 }

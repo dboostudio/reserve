@@ -29,7 +29,7 @@ public class Room extends TimeEntity {
     @OneToMany(mappedBy = "room")
     private List<Reservation> reservations;
 
-    private String roomNumber; // 방 번호 / 방 이름
+    private String roomName; // 방 번호 / 방 이름
     private Integer quota; // 방 정원
     private Integer numberOfBedroom;// 침실 수
     private String comment; // 특이사항
