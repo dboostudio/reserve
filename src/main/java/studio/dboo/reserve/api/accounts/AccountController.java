@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     @PutMapping
-    @ApiOperation(value = "putAccount", notes = "계정 수정")
+    @ApiOperation(value = "updateAccount", notes = "계정 수정")
     public ResponseEntity<?> updateAccount(@CurrentAccount Account account) {
         accountService.updateAccount(account);
         return ResponseEntity.status(HttpStatus.OK).build();
