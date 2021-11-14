@@ -100,6 +100,9 @@ h2 {
 }
 
 .modal{
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
     width: 100vw;
     height: 100vh;
@@ -113,6 +116,22 @@ h2 {
     width: 700px;
     padding: 40px;
     background: white;
+    position:relative;
+}
+
+/* The Close Button */
+.modalContent span.close {
+    position:absolute;
+    top:10px;
+    right:10px;
+    color: #333;
+    font-size: 30px;
+}
+
+.modalContent span.close:hover,
+.modalContent span.close:focus {
+    color: #b4b4b4;
+    cursor: pointer;
 }
 
 .modalForm {
@@ -343,28 +362,51 @@ h2 {
     text-align: center;
 }
 
+.calendarTable td select{
+    /*margin-left: 10px;*/
+    margin-right: 5px;
+    height: 40px;
+    padding: 5px;
+    font-size: 2.1rem;
+    text-align: center;
+    border: none;
+    color: #0a3f38;
+}
+
 .calendarTable .date{
     font-size: 30px;
 }
-
-/*.calendarTable td:nth-child(7){*/
-/*    background: rgba(100, 149, 237, 0.38);*/
-/*}*/
 
 .calendarTable tr:nth-child(2) td:nth-child(6){
     background: cornflowerblue;
 }
 
-/*.calendarTable td:nth-child(8){*/
-/*    background: rgba(205, 92, 92, 0.38);*/
-/*}*/
-
 .calendarTable tr:nth-child(2) td:nth-child(7){
     background: indianred;
 }
 
+.calendarTable tr:nth-child(1) td:nth-child(-n+2) {
+    border: none;
+    height: 100px;
+}
+
+.calendarTable tr:nth-child(n+3) td:nth-child(1) {
+    font-size: 20px;
+    color: #0e255e;
+    font-weight: bold;
+}
+
+.calendarTable tr:nth-child(2n+3) td:nth-child(n+2){
+    background: #d9d9d9;
+}
+
+
+.calendarTable tr:nth-child(1) {
+    border: none;
+}
+
 .calendarTable .reserved{
-    background: rgba(255, 165, 0, 0.29);
+    background: rgb(238, 197, 127) !important;
 }
 
 

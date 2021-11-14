@@ -32,5 +32,6 @@ public class Reservation extends TimeEntity {
     List<Occupancy> occupancies = new ArrayList<>();
 
     private String whoReserve; // 예약자
-
+    private Boolean isRemainingReceivable; //미수금 잔여 여부
+    private String receivable; //미수금액
 }
