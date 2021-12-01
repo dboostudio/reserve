@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.infra.exception.ReserveException;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,20 +60,27 @@ public class AccountService implements UserDetailsService {
         return accountRepository.save(account);
     }
 
-    public void updateAccount(Account account) {
-         accountRepository.save(account);
-    }
-
-    public void deleteAccount(Account account) {
+    public void updateAccount(Account account) throws ReserveException {
+        isMyself(account);
         accountRepository.save(account);
     }
 
-    public Boolean isMyself(Account account) {
-        Principal principal = (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(account.getUserId());
-        System.out.println(principal.getName());
-        Boolean isMyself = account.getUserId().equals(principal.getName());
-        return isMyself;
+    public void deleteAccount(Account account) throws ReserveException {
+        isMyself(account);
+        accountRepository.save(account);
+    }
+
+    // 현재 세션의 계정을 조회
+    public Account getCurrentAccount() {
+        UserAccount userAccount = (UserAccount) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Account> account = accountRepository.findByUserId(userAccount.getUsername());
+        return account.orElseThrow(() -> new UsernameNotFoundException(userAccount.getUsername()));
+    }
+
+    public void isMyself(Account account) throws ReserveException {
+        if(account.getUserId() != getCurrentAccount().getUserId()){
+            throw new ReserveException("계정 소유주가 아닙니다.");
+        }
     }
 
     public void login(Account account) {
@@ -90,10 +97,5 @@ public class AccountService implements UserDetailsService {
                 account.getPassword(),
                 List.of(new SimpleGrantedAuthority("ROLE_USER")));
         SecurityContextHolder.getContext().setAuthentication(token);
-    }
-
-    public void logout(Account account) {
-        isMyself(account);
-
     }
 }

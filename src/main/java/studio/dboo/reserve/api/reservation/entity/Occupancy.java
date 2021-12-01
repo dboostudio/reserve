@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
+@Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Occupancy {
 

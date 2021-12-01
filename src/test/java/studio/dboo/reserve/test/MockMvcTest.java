@@ -1,4 +1,4 @@
-package com.youngilee.web.module.fortest;
+package studio.dboo.reserve.test;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@ActiveProfiles("dev")
+//@ActiveProfiles("dev")
 @Transactional
 @SpringBootTest
 @AutoConfigureMockMvc

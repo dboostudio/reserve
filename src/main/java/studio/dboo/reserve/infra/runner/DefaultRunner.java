@@ -9,6 +9,7 @@ import studio.dboo.reserve.api.accounts.AccountRepository;
 import studio.dboo.reserve.api.accounts.entity.Account;
 import studio.dboo.reserve.api.inn.InnRepository;
 import studio.dboo.reserve.api.inn.entity.Inn;
+import studio.dboo.reserve.api.inn.entity.InnType;
 import studio.dboo.reserve.api.reservation.ReservationRepository;
 import studio.dboo.reserve.api.room.RoomRepository;
 import studio.dboo.reserve.api.room.entity.Room;
@@ -41,6 +42,7 @@ public class DefaultRunner implements ApplicationRunner {
         Inn newInn = Inn.builder()
                 .account(newAccount)
                 .innName("dbooWorld")
+                .innType(InnType.HOTEL)
                 .build();
 
         innRepository.save(newInn);

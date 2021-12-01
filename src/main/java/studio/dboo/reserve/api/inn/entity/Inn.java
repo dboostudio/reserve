@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
+@Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Inn extends AddressTimeEntity {
 
@@ -29,6 +29,8 @@ public class Inn extends AddressTimeEntity {
     private Account account; // 소유주
 
     private String innName; // Inn 이름
+
+    private InnType innType; // Inn 유형
 
     @OneToMany(mappedBy = "inn")
     private List<Room> rooms = new ArrayList<>(); // 방 리스트

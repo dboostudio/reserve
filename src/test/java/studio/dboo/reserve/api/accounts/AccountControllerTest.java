@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.test.MockMvcTest;
 
 import javax.transaction.Transactional;
 
@@ -30,9 +32,7 @@ import static org.springframework.security.test.web.servlet.response.SecurityMoc
  * Gitlab : http://dboostudio.synology.me:30000
  */
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@Transactional
+@MockMvcTest
 class AccountControllerTest {
 
     @Autowired AccountService accountService;
@@ -44,6 +44,12 @@ class AccountControllerTest {
     @BeforeAll
     static void beforeAll(){
         System.out.println("before All");
+    }
+
+    @Test
+    void test(){
+
+        System.out.println("aaa");
     }
 
     @Test

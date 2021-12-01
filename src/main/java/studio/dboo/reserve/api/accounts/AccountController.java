@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.bind.annotation.*;
 import studio.dboo.reserve.api.accounts.entity.Account;
 import studio.dboo.reserve.infra.annotation.RestLogger;
+import studio.dboo.reserve.infra.exception.ReserveException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,14 +49,14 @@ public class AccountController {
 
     @PutMapping
     @ApiOperation(value = "putAccount", notes = "계정 수정")
-    public ResponseEntity<?> updateAccount(@CurrentAccount Account account) {
+    public ResponseEntity<?> updateAccount(@CurrentAccount Account account) throws ReserveException {
         accountService.updateAccount(account);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping
     @ApiOperation(value = "deleteAccount", notes = "계정 삭제")
-    public ResponseEntity<String> deleteAccount(@CurrentAccount Account account){
+    public ResponseEntity<String> deleteAccount(@CurrentAccount Account account) throws ReserveException {
         accountService.deleteAccount(account);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

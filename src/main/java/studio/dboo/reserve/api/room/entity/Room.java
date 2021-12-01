@@ -16,7 +16,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
+@Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Room extends TimeEntity {
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
+@Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Reservation extends TimeEntity {
 
@@ -28,7 +28,7 @@ public class Reservation extends TimeEntity {
     @ManyToOne
     private Room room;
 
-    @OneToMany
+    @OneToMany(mappedBy = "reservation")
     List<Occupancy> occupancies = new ArrayList<>();
 
     private String whoReserve; // 예약자

@@ -57,12 +57,12 @@ public class ViewController {
 
     @GetMapping("/room")
     public String room(Model model, Principal principal){
-        return "inn/room";
+        return "room/room";
     }
 
     @GetMapping("/calendar")
     public String calendar(Model model, Principal principal){
-        return "inn/calendar";
+        return "calendar/calendar";
     }
 
     @GetMapping("/reservation")
