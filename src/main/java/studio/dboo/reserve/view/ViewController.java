@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import studio.dboo.reserve.api.accounts.AccountService;
 import studio.dboo.reserve.api.accounts.entity.Account;
 
@@ -24,49 +25,49 @@ public class ViewController {
     private final AccountService accountService;
 
     @GetMapping("/")
-    public String index(Model model, Principal principal){
-        return "index";
+    public ModelAndView index(Model model, Principal principal){
+        return new ModelAndView("index");
     }
 
     @GetMapping("/sign-up")
-    public String signUp(Model model){
-        return "sign-up";
+    public ModelAndView signUp(Model model){
+        return new ModelAndView("sign-up");
     }
 
     @GetMapping("/login")
-    public String login(Model model, Principal principal) {
-        return "login";
+    public ModelAndView login(Model model, Principal principal) {
+        return new ModelAndView("login");
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal) {
+    public ModelAndView profile(Model model, Principal principal) {
         Account account = accountService.getAccount(principal.getName());
         model.addAttribute(account);
-        return "account/profile";
+        return new ModelAndView("account/profile");
     }
 
     @GetMapping("/admin")
-    public String admin(Model model, Principal principal){
-        return "admin";
+    public ModelAndView admin(Model model, Principal principal){
+        return new ModelAndView("admin");
     }
 
     @GetMapping("/inn")
-    public String inn(Model model, Principal principal){
-        return "inn/inn";
+    public ModelAndView inn(Model model, Principal principal){
+        return new ModelAndView( "inn/inn");
     }
 
     @GetMapping("/room")
-    public String room(Model model, Principal principal){
-        return "room/room";
+    public ModelAndView room(Model model, Principal principal){
+        return new ModelAndView("room/room");
     }
 
     @GetMapping("/calendar")
-    public String calendar(Model model, Principal principal){
-        return "calendar/calendar";
+    public ModelAndView calendar(Model model, Principal principal){
+        return new ModelAndView("calendar/calendar");
     }
 
     @GetMapping("/reservation")
-    public String reservation(Model model, Principal principal){
-        return "inn/reservation";
+    public ModelAndView reservation(Model model, Principal principal){
+        return new ModelAndView("reservation/reservation");
     }
 }

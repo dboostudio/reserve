@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Occupancy {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

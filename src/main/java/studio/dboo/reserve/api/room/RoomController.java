@@ -9,8 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import studio.dboo.reserve.api.accounts.AccountService;
 import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.api.room.dto.RoomForm;
 import studio.dboo.reserve.api.room.entity.Room;
+import studio.dboo.reserve.infra.exception.ReserveException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,6 +35,13 @@ public class RoomController {
     public ResponseEntity<List<Room>> getRoomList(@PathVariable String innName){
         List<Room> roomList = roomService.getRoomList(innName);
         return ResponseEntity.status(HttpStatus.OK).body(roomList);
+    }
+
+    @PostMapping
+    @ApiOperation(value = "createRoom", notes = "방 정보 생성")
+    public ResponseEntity<Room> createRoom(@Valid RoomForm roomForm) throws ReserveException {
+        roomService.createRoom(roomForm);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

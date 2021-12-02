@@ -22,7 +22,7 @@ import java.util.List;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Reservation extends TimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

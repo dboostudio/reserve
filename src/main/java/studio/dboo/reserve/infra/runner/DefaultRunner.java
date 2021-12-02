@@ -37,15 +37,39 @@ public class DefaultRunner implements ApplicationRunner {
                 .gender("male")
                 .build();
 
+        Account newAccount2 = Account.builder()
+                .userId("1@gmail.com")
+                .password(passwordEncoder.encode("1"))
+                .build();
+
         accountRepository.save(newAccount);
+        accountRepository.save(newAccount2);
 
         Inn newInn = Inn.builder()
                 .account(newAccount)
-                .innName("dbooWorld")
+                .innName("게하")
+                .innType(InnType.GUESTHOUSE)
+                .build();
+        Inn newInn1 = Inn.builder()
+                .account(newAccount)
+                .innName("hotel")
                 .innType(InnType.HOTEL)
+                .build();
+        Inn newInn2 = Inn.builder()
+                .account(newAccount)
+                .innName("motel")
+                .innType(InnType.MOTEL)
+                .build();
+        Inn newInn3 = Inn.builder()
+                .account(newAccount)
+                .innName("pension")
+                .innType(InnType.PENSION)
                 .build();
 
         innRepository.save(newInn);
+        innRepository.save(newInn1);
+        innRepository.save(newInn2);
+        innRepository.save(newInn3);
 
         Room newRoom1 = Room.builder()
                 .inn(newInn)

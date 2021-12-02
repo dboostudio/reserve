@@ -38,7 +38,6 @@ out/
 
 ## DB Volume
 docker/postgresql/
-/gradle/wrapper/
 /gradlew
 /gradlew.bat
 /src/main/resources/static/node_modules/
