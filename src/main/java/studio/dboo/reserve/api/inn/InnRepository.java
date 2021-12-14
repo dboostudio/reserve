@@ -18,5 +18,5 @@ import java.util.Optional;
 public interface InnRepository extends JpaRepository<Inn, Long> {
     Inn findByAccount(Account account);
 
-    Optional<Inn> findByAccountAndInnName(Account account, String InnName);
+    Optional<Inn> findByAccountAndId(Account currentAccount, Long innId);
 }

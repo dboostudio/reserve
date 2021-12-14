@@ -7,19 +7,20 @@ package studio.dboo.reserve.api.inn.entity;
  * Gitlab : http://dboostudio.synology.me:30000
  */
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import studio.dboo.reserve.api.accounts.entity.Account;
-import studio.dboo.reserve.api.base.AddressTimeEntity;
-import studio.dboo.reserve.api.reservation.entity.Reservation;
+import studio.dboo.reserve.view.base.AddressTimeEntity;
 import studio.dboo.reserve.api.room.entity.Room;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Inn extends AddressTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,6 @@ public class Inn extends AddressTimeEntity {
     private InnType innType; // Inn 유형
 
     @OneToMany(mappedBy = "inn")
-    private List<Room> rooms = new ArrayList<>(); // 방 리스트
+    private List<Room> rooms; // 방 리스트
 
 }

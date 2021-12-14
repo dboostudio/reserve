@@ -67,7 +67,7 @@ public class AccountService implements UserDetailsService {
 
     public void deleteAccount(Account account) throws ReserveException {
         isMyself(account);
-        accountRepository.save(account);
+        accountRepository.delete(account);
     }
 
     // 현재 세션의 계정을 조회

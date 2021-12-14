@@ -6,6 +6,8 @@ package studio.dboo.reserve.api.reservation.entity;
  * Github : http://github.com/dboostudio
  * Gitlab : http://dboostudio.synology.me:30000
  */
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Occupancy {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

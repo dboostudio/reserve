@@ -12,6 +12,6 @@ import studio.dboo.reserve.api.room.entity.Room;
 @Builder
 public class RoomForm {
 
-    private String innName;
+    private Long innId;
     private Room room;
 }

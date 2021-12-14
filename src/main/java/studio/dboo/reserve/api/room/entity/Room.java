@@ -7,8 +7,10 @@ package studio.dboo.reserve.api.room.entity;
  * Gitlab : http://dboostudio.synology.me:30000
  */
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import studio.dboo.reserve.api.base.TimeEntity;
+import studio.dboo.reserve.view.base.TimeEntity;
 import studio.dboo.reserve.api.inn.entity.Inn;
 import studio.dboo.reserve.api.reservation.entity.Reservation;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Room extends TimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

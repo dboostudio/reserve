@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import studio.dboo.reserve.api.accounts.AccountService;
 import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.api.inn.InnService;
+import studio.dboo.reserve.api.inn.entity.Inn;
+import studio.dboo.reserve.infra.exception.ReserveException;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by dboo on 2021/11/04
@@ -23,6 +27,7 @@ import java.security.Principal;
 public class ViewController {
 
     private final AccountService accountService;
+    private final InnService innService;
 
     @GetMapping("/")
     public ModelAndView index(Model model, Principal principal){
@@ -52,7 +57,9 @@ public class ViewController {
     }
 
     @GetMapping("/inn")
-    public ModelAndView inn(Model model, Principal principal){
+    public ModelAndView inn(Model model, Principal principal) throws ReserveException {
+        List<Inn> innList = innService.getInnList();
+        model.addAttribute("innList", innList);
         return new ModelAndView( "inn/inn");
     }
 

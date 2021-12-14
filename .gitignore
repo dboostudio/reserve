@@ -37,6 +37,7 @@ out/
 .vscode/
 
 ## DB Volume
+.DS_Store
 docker/postgresql/
 /gradlew
 /gradlew.bat

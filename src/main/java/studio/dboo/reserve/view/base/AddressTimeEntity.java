@@ -1,4 +1,4 @@
-package studio.dboo.reserve.api.base;
+package studio.dboo.reserve.view.base;
 
 /**
  * Created by dboo on 2021/11/08

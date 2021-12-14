@@ -4,11 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import studio.dboo.reserve.api.accounts.AccountService;
-import studio.dboo.reserve.api.accounts.entity.Account;
 import studio.dboo.reserve.api.room.dto.RoomForm;
 import studio.dboo.reserve.api.room.entity.Room;
 import studio.dboo.reserve.infra.exception.ReserveException;
@@ -30,17 +26,23 @@ public class RoomController {
 
     private final RoomService roomService;
 
-    @GetMapping("/{innName}")
+    @GetMapping("/{innId}")
     @ApiOperation(value = "getRoomList", notes = "방 정보 조회")
-    public ResponseEntity<List<Room>> getRoomList(@PathVariable String innName){
-        List<Room> roomList = roomService.getRoomList(innName);
+    public ResponseEntity<List<Room>> getRoomList(@PathVariable Long innId) throws ReserveException {
+        List<Room> roomList = roomService.getRoomList(innId);
         return ResponseEntity.status(HttpStatus.OK).body(roomList);
     }
 
     @PostMapping
     @ApiOperation(value = "createRoom", notes = "방 정보 생성")
-    public ResponseEntity<Room> createRoom(@Valid RoomForm roomForm) throws ReserveException {
-        roomService.createRoom(roomForm);
+    public ResponseEntity<Room> createRoom(@Valid @RequestBody RoomForm roomForm) throws ReserveException {
+        return ResponseEntity.status(HttpStatus.OK).body(roomService.createRoom(roomForm));
+    }
+
+    @DeleteMapping
+    @ApiOperation(value = "deleteRoom", notes = "방 정보 삭제" )
+    public ResponseEntity deleteRoom(@RequestBody RoomForm roomForm) throws ReserveException{
+        roomService.deleteRoom(roomForm);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
