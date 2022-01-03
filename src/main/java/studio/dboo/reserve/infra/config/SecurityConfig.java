@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import studio.dboo.reserve.api.accounts.AccountService;
+import studio.dboo.reserve.module.accounts.AccountService;
 
 import javax.sql.DataSource;
 
@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /** View */
                 .antMatchers("/", "/view/login", "/view/sign-up").permitAll()
                 .antMatchers("/view/calendar").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 /** API */
                 //account
                 .antMatchers(HttpMethod.POST, "/api/account").permitAll()

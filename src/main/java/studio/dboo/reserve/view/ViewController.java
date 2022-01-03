@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import studio.dboo.reserve.api.accounts.AccountService;
-import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.module.accounts.AccountService;
+import studio.dboo.reserve.module.accounts.entity.Account;
 
 import java.security.Principal;
 
@@ -52,6 +52,8 @@ public class ViewController {
 
     @GetMapping("/inn")
     public String inn(Model model, Principal principal){
+        Account account = accountService.getAccount(principal.getName());
+        model.addAttribute("innList", account.getInns());
         return "inn/inn";
     }
 

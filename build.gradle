@@ -3,6 +3,8 @@ buildscript {
         spring = "2.5.0"
         boot = "org.springframework.boot"
         lombok = "org.projectlombok:lombok"
+        queryDslVersion = "5.0.0"
+
     }
     repositories {
         mavenCentral()
@@ -40,11 +42,31 @@ dependencies {
     implementation "$boot:spring-boot-starter-validation"
     implementation "$boot:spring-boot-starter-oauth2-client"
 
+    // THYMELEAF
     implementation "$boot:spring-boot-starter-thymeleaf"
     implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5"
 
+    // Log4j2
+    implementation "$boot:spring-boot-starter-log4j2"
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.16.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.32'
+
+    // SWAGGER
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+
     // DB
     implementation "org.postgresql:postgresql"
+
+    // QueryDSL
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    annotationProcessor(
+            "javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
     // TEST
     testImplementation "$boot:spring-boot-starter-test"
@@ -61,7 +83,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6' //json처리
     implementation 'io.jsonwebtoken:jjwt:0.9.1' //jjwt
 
+}
 
+configurations {
+    all {
+        // 기존 스프링부트에 있는 로거 의존성을 제외한다. -> LOG4J2 를 쓰기 위해
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 test {

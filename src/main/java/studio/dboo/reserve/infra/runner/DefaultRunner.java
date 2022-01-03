@@ -5,16 +5,13 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import studio.dboo.reserve.api.accounts.AccountRepository;
-import studio.dboo.reserve.api.accounts.entity.Account;
-import studio.dboo.reserve.api.inn.InnRepository;
-import studio.dboo.reserve.api.inn.entity.Inn;
-import studio.dboo.reserve.api.reservation.ReservationRepository;
-import studio.dboo.reserve.api.room.RoomRepository;
-import studio.dboo.reserve.api.room.entity.Room;
-
-import java.util.ArrayList;
-import java.util.List;
+import studio.dboo.reserve.module.accounts.AccountRepository;
+import studio.dboo.reserve.module.accounts.entity.Account;
+import studio.dboo.reserve.module.inn.InnRepository;
+import studio.dboo.reserve.module.inn.entity.Inn;
+import studio.dboo.reserve.module.reservation.ReservationRepository;
+import studio.dboo.reserve.module.room.RoomRepository;
+import studio.dboo.reserve.module.room.entity.Room;
 
 @Component
 @RequiredArgsConstructor
@@ -41,6 +38,14 @@ public class DefaultRunner implements ApplicationRunner {
         Inn newInn = Inn.builder()
                 .account(newAccount)
                 .innName("dbooWorld")
+//                .address(Address.builder()
+//                        .country("korea")
+//                        .city("제주시")
+//                        .state("제주특별자치도")
+//                        .address("독짓골2길 25")
+//                        .addressDetail("마동 302호")
+//                        .zipCode("63112")
+//                        .build())
                 .build();
 
         innRepository.save(newInn);

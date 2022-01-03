@@ -1,0 +1,44 @@
+server:
+  port: 6572
+
+# Log4j2
+logging:
+  config: classpath:config/log4j2-local.xml
+
+# swagger enable
+springfox:
+  documentation:
+    swagger:
+      v2:
+        enabled: true
+---
+# --- profile local --- #
+spring:
+  mvc:
+    pathmatch:
+      #      강제로 WebMvcRequestHandlerProvider를 소스안에 복사한것을 적용시키기 위한 항목
+      matching-strategy: ant_path_matcher
+  # POSTGERSQL
+  datasource:
+    url: jdbc:postgresql://localhost:15432/inn
+    username: inn
+    password: inn1@!2_
+    driver-class-name: org.postgresql.Driver
+
+  # hibernate optionddl-auto
+  jpa:
+    hibernate:
+      ddl-auto: create
+      ## 1. create : ?? ???? ?? ????, ?? ???? ???.
+      ## 2. update : ??? ????? ????? ??? ???, ???? ????.
+      ## 3. validate : ????? ?????? ????.
+
+    ## show-sql : hibernate? ???? ????? SQL?? ??? ????.
+    show-sql: true
+#  properties:
+#    hibernate:
+#      format_sql: true
+
+# banner
+banner:
+#  location: banner/local-banner.txt
