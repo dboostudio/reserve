@@ -5,15 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import studio.dboo.reserve.api.accounts.AccountService;
-import studio.dboo.reserve.api.accounts.entity.Account;
-import studio.dboo.reserve.api.inn.InnService;
-import studio.dboo.reserve.api.inn.entity.Inn;
-import studio.dboo.reserve.infra.exception.ReserveException;
+import studio.dboo.reserve.module.accounts.AccountService;
+import studio.dboo.reserve.module.accounts.entity.Account;
 
 import java.security.Principal;
-import java.util.List;
 
 /**
  * Created by dboo on 2021/11/04
@@ -27,54 +22,53 @@ import java.util.List;
 public class ViewController {
 
     private final AccountService accountService;
-    private final InnService innService;
 
     @GetMapping("/")
-    public ModelAndView index(Model model, Principal principal){
-        return new ModelAndView("index");
+    public String index(Model model, Principal principal){
+        return "index";
     }
 
     @GetMapping("/sign-up")
-    public ModelAndView signUp(Model model){
-        return new ModelAndView("sign-up");
+    public String signUp(Model model){
+        return "sign-up";
     }
 
     @GetMapping("/login")
-    public ModelAndView login(Model model, Principal principal) {
-        return new ModelAndView("login");
+    public String login(Model model, Principal principal) {
+        return "login";
     }
 
     @GetMapping("/profile")
-    public ModelAndView profile(Model model, Principal principal) {
+    public String profile(Model model, Principal principal) {
         Account account = accountService.getAccount(principal.getName());
         model.addAttribute(account);
-        return new ModelAndView("account/profile");
+        return "account/profile";
     }
 
     @GetMapping("/admin")
-    public ModelAndView admin(Model model, Principal principal){
-        return new ModelAndView("admin");
+    public String admin(Model model, Principal principal){
+        return "admin";
     }
 
     @GetMapping("/inn")
-    public ModelAndView inn(Model model, Principal principal) throws ReserveException {
-        List<Inn> innList = innService.getInnList();
-        model.addAttribute("innList", innList);
-        return new ModelAndView( "inn/inn");
+    public String inn(Model model, Principal principal){
+        Account account = accountService.getAccount(principal.getName());
+        model.addAttribute("innList", account.getInns());
+        return "inn/inn";
     }
 
     @GetMapping("/room")
-    public ModelAndView room(Model model, Principal principal){
-        return new ModelAndView("room/room");
+    public String room(Model model, Principal principal){
+        return "inn/room";
     }
 
     @GetMapping("/calendar")
-    public ModelAndView calendar(Model model, Principal principal){
-        return new ModelAndView("calendar/calendar");
+    public String calendar(Model model, Principal principal){
+        return "inn/calendar";
     }
 
     @GetMapping("/reservation")
-    public ModelAndView reservation(Model model, Principal principal){
-        return new ModelAndView("reservation/reservation");
+    public String reservation(Model model, Principal principal){
+        return "inn/reservation";
     }
 }

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithSecurityContextFactory;
-import studio.dboo.reserve.api.accounts.AccountService;
-import studio.dboo.reserve.api.accounts.entity.Account;
+import studio.dboo.reserve.module.accounts.AccountService;
+import studio.dboo.reserve.module.accounts.entity.Account;
 
 @RequiredArgsConstructor
 public class WithAccountSecurityContextFactory implements WithSecurityContextFactory<WithAccount> {

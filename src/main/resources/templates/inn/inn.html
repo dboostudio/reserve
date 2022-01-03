@@ -2,14 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/fragments/head.html :: head"/>
 <body>
-<div class = "row">
-    <div class="col-2">
-        <div th:replace="/fragments/sidebar.html ::  sidebar"/>
-    </div>
-    <div class="col">
-        <div th:replace="/fragments/nav.html :: nav-main"/>
-        <h1>환영합니다. 숙소설정 사이트 입니다.</h1>
-        <div th:replace="/fragments/footer.html :: footer"/>
+<div class = "container">
+    <div th:replace="/fragments/sidebar.html ::  sidebar"/>
+    <div class="content inn">
+        <h1>나의 숙소 정보</h1>
+        <tr>
+            <td>숙소 이름</td>
+            <td>주소</td>
+            <td>방 갯수</td>
+        </tr>
+        <tr th:each="inn:${innList}">
+            <td><span th:text="${inn.innName}"></span></td>
+            <td><span th:text="${inn.address}"></span></td>
+            <td><span th:text="${inn.rooms.size()}"></span></td>
+        </tr>
     </div>
 
     <div th:replace="/inn/innModal.html ::  innModal"/>
