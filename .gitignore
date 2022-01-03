@@ -41,6 +41,8 @@ docker/postgresql/
 /gradle/wrapper/
 /gradlew
 /gradlew.bat
+
 /src/main/resources/static/node_modules/
 /src/main/resources/static/package-lock.json
 /src/main/generated/
+/logs/
