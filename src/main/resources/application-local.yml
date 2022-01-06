@@ -20,9 +20,9 @@ spring:
       matching-strategy: ant_path_matcher
   # POSTGERSQL
   datasource:
-    url: jdbc:postgresql://localhost:15432/inn
-    username: inn
-    password: inn1@!2_
+    url: jdbc:postgresql://localhost:5432/inn
+    username: dboopg
+    password: dboopg
     driver-class-name: org.postgresql.Driver
 
   # hibernate optionddl-auto
