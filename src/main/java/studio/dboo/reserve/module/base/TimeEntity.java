@@ -10,12 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
+
 
 @Builder
 @Getter @Setter

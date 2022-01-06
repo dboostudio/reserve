@@ -6,12 +6,7 @@ import studio.dboo.reserve.module.accounts.entity.Account;
 
 import java.util.List;
 
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
+
 public class UserAccount extends User {
     private Account account;
 

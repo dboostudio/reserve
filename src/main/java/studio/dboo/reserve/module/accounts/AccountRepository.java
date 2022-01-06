@@ -6,12 +6,7 @@ import studio.dboo.reserve.module.accounts.entity.Account;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
+
 @Transactional
 public interface AccountRepository extends JpaRepository<Account, Long> {
 

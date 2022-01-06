@@ -8,20 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import studio.dboo.reserve.module.accounts.entity.Account;
-import studio.dboo.reserve.infra.annotation.RestLogger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
-@RestLogger
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/account")

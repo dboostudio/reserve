@@ -11,12 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
+
 @Slf4j
 @RestControllerAdvice(value = "studio.dboo.reserve.api.accounts")
 @RequiredArgsConstructor

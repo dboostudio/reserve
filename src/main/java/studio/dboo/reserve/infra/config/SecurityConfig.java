@@ -14,12 +14,7 @@ import studio.dboo.reserve.module.accounts.AccountService;
 
 import javax.sql.DataSource;
 
-/**
- * Created by dboo on 2021/11/04
- * Blog : http://dboostudio.github.io
- * Github : http://github.com/dboostudio
- * Gitlab : http://dboostudio.synology.me:30000
- */
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -44,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/node_modules/**");
         web.ignoring().antMatchers("/js/**");
         web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/v2/api-docs","/webjars/**","/swagger-ui/*","/swagger**/","/swagger-resources/**");
     }
 
     @Override
